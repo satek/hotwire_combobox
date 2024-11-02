@@ -317,10 +317,10 @@ Combobox.Events = Base => class extends Base {
     });
   }
 
-  _dispatchSelectionEvent() {
+  _dispatchSelectionEvent({ inputType }) {
     dispatch("hw-combobox:selection", {
       target: this.element,
-      detail: this._eventableDetails
+      detail: { ...this._eventableDetails, inputType }
     });
   }
 
@@ -1521,7 +1521,7 @@ Combobox.Toggle = Base => class extends Base {
 
       this.expandedValue = false;
 
-      this._dispatchSelectionEvent();
+      this._dispatchSelectionEvent({ inputType: inputType });
 
       if (inputType != "hw:keyHandler:escape") {
         this._createChip(shouldReopen);
